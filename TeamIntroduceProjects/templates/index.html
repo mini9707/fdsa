@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <title>Team A4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .title {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn {
+            font-size: 50px;
+        }
+
+        .TeamIntroduce {
+            border: 1px solid black;
+            margin: auto;
+            width: 900px;
+            height: 320px;
+            text-align: center;
+        }
+
+        .mycards {
+            padding: 20px;
+        }
+
+        .btn3 {
+            border-color: black;
+            background-color: white;
+            border-radius: 10px;
+            font-size: 20px;
+            transition: all 0.4s;
+        }
+        .btn3:hover {
+            color: white;
+            background-color: black;
+        }
+
+        p.tv {
+			text-align: center;
+			font-size: 48px;
+			margin-bottom: 10px;
+			margin-left: 25px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            listing();
+        });
+        function listing() {
+            fetch('/alldata').then((res) => res.json()).then((data) => {
+                let rows = data['result'];
+                console.log(rows);
+                $('#cards-box').empty();
+                rows.forEach((a) => {
+                    let id = a['_id']
+                    let photo = a['photo'];
+                    let name = a['name'];
+                    let introduce = a['introduce'];
+                    let mbti = a['mbti'];
+                    let merits_demerits = a['merits_demerits'];
+                    let style = a['style'];
+                    let blog = a['blog'];
+                    let github = a['github'];
+                    let temp_html = `<div class="col">
+                                        <div class="card h-100" id="card">
+                                            <a href='/view/${id}'><img src="${photo}"
+                                                class="card-img-top"></a>
+                                            <div class="card-body">
+                                                <h5 class="card-name">${name}</h5>ㄴ
+                                            </div>
+                                        </div>
+                                    </div>`;
+                    $('#cards-box').append(temp_html);
+                });
+            });
+        }
+        function open_box() {
+            popupWindow = window.open("/write.html", "title", "resizeable");
+            popupWindow.resizeTo(430, 1050);
+            popupWindow.onresize = (_ => {
+                popupWindow.resizeTo(430, 1050);
+            })
+        }
+        
+    </script>
+</head>
+
+<body>
+    <div class="title">
+        <a href="/"><img src="https://openimage.interpark.com/goods_image_big/9/9/2/4/3315569924b_l.jpg" width="120"
+                height="120"></a> <button class="btn" onclick="location.href='/'">A4</button>
+    </div>
+    <div class="TeamIntroduce">
+        <h1>Team A4를 소개합니다!!</h1>
+        <b>안녕하세요~ 저희는 A4팀입니다. 저희 조가 A04조다 보니까 팀명을 A4로 정했습니다. <br>
+            우선 저희조는 팀장을 맡고 있는 송병민님과 팀원 김규준, 김동규, 김성수, 김휘수로 구성되어 있습니다. <br>
+            샬라샬라 <br> <br> <br> <br> <br>저희 팀에 합류를 원하신다면 작성해주세용😝 <br></b> <br>
+        <button class="btn3" type="button" onclick="open_box()">A4에 합류하기!!</button>
+    </div>
+
+    <div>
+        <p class="tv">😎시청할 프로필을 선택하세요😎</p>
+    </div>
+
+    <div class="mycards">
+        <div class="row row-cols-1 row-cols-md-5 g-5" id="cards-box" style="height: 7rem;">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbHN64I%2FbtsfWU5BVqs%2FEDjMV4l7QDH7gSpgMqbjU1%2Fimg.jpg"
+                        class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-name">이름</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbHN64I%2FbtsfWU5BVqs%2FEDjMV4l7QDH7gSpgMqbjU1%2Fimg.jpg"
+                        class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-name">이름</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbHN64I%2FbtsfWU5BVqs%2FEDjMV4l7QDH7gSpgMqbjU1%2Fimg.jpg"
+                        class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-name">이름</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbHN64I%2FbtsfWU5BVqs%2FEDjMV4l7QDH7gSpgMqbjU1%2Fimg.jpg"
+                        class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-name">이름</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbHN64I%2FbtsfWU5BVqs%2FEDjMV4l7QDH7gSpgMqbjU1%2Fimg.jpg"
+                        class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-name">이름</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
